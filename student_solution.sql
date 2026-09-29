@@ -1,38 +1,37 @@
 
-CREATE TABLE Course70(
-CourseID INT,
-CourseName VARCHAR(30),
-Credits INT
+
+CREATE TABLE Department (
+    DepartmentID INT,
+    DepartmentName VARCHAR(30)
 );
 
-INSERT INTO Course70 VALUES
-(201,'Database Systems',4),
-(202,'Data Structures',3),
-(203,'Mathematics',4);
+INSERT INTO Department VALUES
+(101, 'Computer Science'),
+(102, 'Mathematics'),
+(103, 'Physics');
 
-CREATE TABLE Enrollment(
-EnrollmentID INT,
-StudentID INT,
-CourseID INT
+CREATE TABLE Student (
+    StudentID INT,
+    StudentName VARCHAR(20),
+    DepartmentID INT
 );
 
-INSERT INTO Enrollment VALUES
-(1,1001,201),
-(2,1001,202),
-(3,1002,203),
-(4,1003,201);
+INSERT INTO Student VALUES
+(1001, 'Arun', 101),
+(1002, 'Divya', 102),
+(1003, 'Karthik', 101),
+(1004, 'Nisha', 103);
 
-SELECT Course70.CourseID,
-Course70.CourseName,
-Enrollment.StudentID
-FROM Course70
-LEFT JOIN Enrollment
-ON Course70.CourseID = Enrollment.CourseID;
+-- LEFT JOIN
+SELECT Student.StudentName,
+       Department.DepartmentName
+FROM Student
+LEFT JOIN Department
+ON Student.DepartmentID = Department.DepartmentID;
 
-
-SELECT Course70.CourseID,
-Course70.CourseName,
-Enrollment.StudentID
-FROM Course70
-RIGHT JOIN Enrollment
-ON Course70.CourseID = Enrollment.CourseID;
+-- RIGHT JOIN
+SELECT Student.StudentName,
+       Department.DepartmentName
+FROM Student
+RIGHT JOIN Department
+ON Student.DepartmentID = Department.DepartmentID;
